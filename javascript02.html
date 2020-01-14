@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>javascript-DOM</title>
+    <style>
+        body{
+            color:white;
+            background-color:black;
+        }
+        #purchases li{
+            font-weight:blod;
+        }
+    </style>
+</head>
+<body>
+    <h1>What to buy</h1>
+    <p title="a gentle reminder">Don't forget to buy this stuff.</p>
+    <ul id="purchases">
+        <li>A tin beans</li>
+        <li class="sale">Cheese</li>
+        <li class="sale">Milk</li>
+    </ul>
+    <script>
+        //5个常用DOM方法：getElementById、getElementByTagName、getElementByClassName、getAttribute和setAttribute
+        alert(typeof document.getElementById("purchases"));
+        console.log(document.getElementsByTagName("li"));
+        let items = document.getElementsByTagName("li");
+        for(let i=0;i<items.length;i++){
+            console.log(typeof items[i]);
+        }
+        alert(document.getElementsByClassName("sale").length);
+
+        //自己编写document.getElementsByClassName函数
+
+        function getElementsByClassName(node,classname){
+            if(node.getElementsByClassName){
+                //使用现有的方法
+                return node.getElementsByClassName(classname);
+            }else {
+                let results = new Array();
+                let elems = node.getElementsByTagName("*");
+                for(let i= 0;i<elems.length;i++){
+                    if(elems[i].className.indexOf(classname) != -1){
+                        results[results.length] = elems[i]
+                    }
+                }
+                return results;
+            }
+        }
+        let shopping = document.getElementById("purchases");
+        let sale = getElementsByClassName(shopping,"sale");
+        console.log(sale);
+
+        //获取和设置属性 getAttribute setAttribute
+        let paras = document.getElementsByTagName("p");
+        for(let i=0;i<paras.length;i++){
+            console.log(paras[i].getAttribute("title"));
+        }
+
+        shopping.setAttribute("title","a list of goods");
+        console.log(shopping.getAttribute("title"));
+
+
+
+
+    </script>
+</body>
+</html>
