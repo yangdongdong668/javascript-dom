@@ -29,26 +29,29 @@
     <p id="description">choose an image.</p>
     <script>
         function showPic(whichpic){
+            //判断节点是否存在，不存在js也不会报错，不会阻止页面渲染
+            if(!document.getElementById("placeholder")) return false;
            let source = whichpic.getAttribute("href");
            let placeholder = document.getElementById("placeholder");
            placeholder.setAttribute("src",source);
-           let text = whichpic.getAttribute("title");
-           let description = document.getElementById("description");
-           console.log(description.childNodes);
-           description.childNodes[0].nodeValue = text;
-          //  window.open(source,"popup","width=800,height=500");
+            if(document.getElementById("description")){
+                let text = whichpic.getAttribute("title");
+                let description = document.getElementById("description");
+                console.log(description.childNodes);
+                description.firstChild.nodeValue = text;
+            }
+            return true;
 
         }
         function prepareGallery(){
           //判断该浏览器能不能使用该方法
-          let gallery = document.getElementById("imagegallery");
-          let supported = document.getElementsByTagName && document.getElementById && gallery;
+          let supported = document.getElementsByTagName && document.getElementById && document.getElementById("imagegallery");
           if(!supported) return;
+          let gallery = document.getElementById("imagegallery");
           let links = gallery.getElementsByTagName("a");
           for(let i = 0; i<links.length;i++){
                     links[i].onclick = function(){
-                        showPic(this);
-                        return false;
+                       return !showPic(this);
                     }
             }
         }

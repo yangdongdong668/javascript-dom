@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动态创建标记</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="testdiv">
+        <p>this id <em>my</em> content.</p>
+    </div>
+    <script>
+        //动态添加不够优雅
+        document.write("<p>This id inserted.</p>");
+
+        let para = document.createElement("p");
+        window.onload = function(){
+            let testdiv = document.getElementById("testdiv");
+            testdiv.appendChild(para);
+            console.log(testdiv.innerHTML);
+            let txt = document.createTextNode("hello world");
+            para.appendChild(txt);
+        }
+        //在已有的元素前面插入一个新元素 insertBefore()
+        //1)新元素：你想插入的的元素（newElement）
+        //2)目标元素：你想把这个新元素插入到那个元素（targetElement）之前
+        //3)父元素：目标元素的父元素（parentElement）
+        //parentElement.insertBefore(newElement,targetElement)
+        //例：let gallery = document.getElementById("imagegallery");
+        //gallery.parentNode.insertbefore(placeholder,gallery);
+
+        //封装insertAfter函数  nextSibling:下一个节点
+        function insertAfter(newElement,targetElement){
+            let parent = targetElement.parentNode;
+            if(parent.lastChild == targetElement){
+                parent.appendChild(newElement);
+            }else {
+                parent.insertBefore(newElement,targetElement.nextSibling);
+            }
+        }
+        
+        
+    </script>
+</body>
+</html>
