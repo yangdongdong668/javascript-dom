@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<title lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css-dom</title>
+    <link rel="stylesheet" href="css/format.css" media="screen">
+</head>
+<body>
+    <h1>DOM动态添加class</h1>
+    <p id="example" style="color:grey;font-family:'Arial',sans-serif;">an example of a paragraph</p>
+    <table>
+        <caption>Itinerary</caption>
+        <thead>
+            <tr>
+                <th>When</th>
+                <th>Where</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>June 9th</td>
+                <td>Portland,<abbr title="Oregon">OR</abbr></td>
+            </tr>
+            <tr>
+                <td>June 9th</td>
+                <td>Portland,<abbr title="Oregon">OR</abbr></td>
+            </tr>
+            <tr>
+                <td>June 9th</td>
+                <td>Portland,<abbr title="Oregon">OR</abbr></td>
+            </tr>
+        </tbody>
+    </table>
+    <script src="js/addLoadEvent.js"></script>
+    <script src="js/stripeTables.js"></script>
+    <script src="js/styleHeaderSiblings.js"></script>
+    <!-- <script>
+        window.onload= function(){
+            let para = document.getElementById("example");
+            para.style.color = "black";
+        }
+    </script> -->
+</body>
+</title>
